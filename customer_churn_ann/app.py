@@ -1,4 +1,3 @@
-
 from pathlib import Path
 
 import joblib
@@ -14,8 +13,8 @@ import streamlit.components.v1 as components
 # 1. PATHS AND MODEL ARCHITECTURE
 # --------------------------------------------------
 
-ROOT = Path(__file__).resolve().parent
-ART = ROOT / "artifacts"
+root = Path(__file__).resolve().parent
+art = root / "artifacts"
 
 
 class ChurnANN(nn.Module):
@@ -37,11 +36,11 @@ class ChurnANN(nn.Module):
 
 @st.cache_resource
 def load_assets():
-    model_file = ART / "churn_ann.pt"
-    prep_file = ART / "preprocessor.joblib"
+    model_file = art / "churn_ann.pt"
+    prep_file = art / "preprocessor.joblib"
 
     if not model_file.exists() or not prep_file.exists():
-        return None, None, None
+        return None
 
     ckpt = torch.load(model_file, map_location="cpu")
 
